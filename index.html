@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lama Lama | Amsterdam based creative digital agency</title>
+<meta name="description" content="Local front-end replication study of lamalama.com — for personal learning only.">
+<link rel="stylesheet" href="css/style.css">
+<script>
+/* Rewrite local asset refs to their original public URLs (personal learning mirror) */
+document.addEventListener('DOMContentLoaded', function () {
+  var B = 'https://lamalama.com/wp-content/uploads/';
+  function up(f) {
+    if (/^Jackandai/.test(f)) return B + '2026/06/' + f;
+    if (/^lamalama-moov/.test(f) || /^lamalama-culture-(13|08)/.test(f)) return B + '2026/05/' + f;
+    if (/^(Gardners|NeuronsLab|PZR)/.test(f)) return B + '2026/04/' + f;
+    if (/^concept/.test(f) || /^(achmea|Cupra|BUMA|Sony|Van-Doorne|DSM|Amsterdam)\.png$/.test(f)) return B + '2026/01/' + f;
+    if (/^(lars\.jpg|living-799x1200\.jpg|image\.jpg|nick-799x1200\.jpg)$/.test(f)) return B + '2025/10/' + f;
+    if (/^zaid/.test(f)) return B + '2025/11/' + f;
+    if (/^(Home|our-vibe|splitted|multi_list|image_grid|lamalama-culture-11)/.test(f)) return B + '2025/12/' + f;
+    return null;
+  }
+  var V = {
+    'hero.mp4': 'https://vz-f76b55f9-7b8.b-cdn.net/078e30bf-d893-43a9-b157-70591b82d7f9/play_720p.mp4',
+    'showreel-preview.mp4': 'https://vz-f76b55f9-7b8.b-cdn.net/f51d055c-ad44-4a8d-9a12-a0c546e55955/play_720p.mp4',
+    'awwwards.mp4': 'https://vz-f76b55f9-7b8.b-cdn.net/f700974a-73fd-4242-a26c-3f684bd62993/play_720p.mp4'
+  };
+  document.querySelectorAll('img[src*="assets/img/"], video[src*="assets/video/"]').forEach(function (el) {
+    var s = el.getAttribute('src');
+    var f = s.split('/').pop();
+    var u = s.indexOf('assets/img/') > -1 ? up(f) : V[f];
+    if (u) el.src = u;
+  });
+});
+</script>
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader">
+  <div class="preloader__pct" id="preloaderPct">0%</div>
+</div>
+
+<!-- ============ CENTER NAV PILL ============ -->
+<header class="navpill" id="navpill">
+  <div class="navpill__bar">
+    <a class="navpill__logo" href="#" aria-label="Home">
+      <svg class="logo-mark" viewBox="0 0 22 22" fill="currentColor" aria-hidden="true">
+        <rect x="0" y="0" width="6" height="6"/><rect x="0" y="8" width="6" height="6"/><rect x="0" y="16" width="6" height="6"/><rect x="8" y="16" width="6" height="6"/>
+        <rect x="16" y="8" width="6" height="6"/><rect x="16" y="16" width="6" height="6"/>
+      </svg>
+      <svg class="logo-checker" viewBox="0 0 22 22" fill="currentColor" aria-hidden="true">
+        <rect x="0" y="0" width="6" height="6"/><rect x="8" y="0" width="6" height="6"/><rect x="16" y="0" width="6" height="6"/>
+        <rect x="4" y="8" width="6" height="6"/><rect x="12" y="8" width="6" height="6"/>
+        <rect x="0" y="16" width="6" height="6"/><rect x="8" y="16" width="6" height="6"/><rect x="16" y="16" width="6" height="6"/>
+      </svg>
+    </a>
+    <div class="navpill__label" id="navLabel"><span>LET&rsquo;S DO DAMAGE</span></div>
+    <button class="navpill__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="navmenu" id="navmenu" aria-hidden="true">
+    <ul class="navmenu__list">
+      <li class="navmenu__item"><a href="#work" class="navmenu__link" data-close>Work</a></li>
+      <li class="navmenu__item navmenu__item--sub">
+        <button class="navmenu__link navmenu__subtoggle" id="subtoggle">What we do
+          <svg class="dots" viewBox="0 0 12 12" fill="currentColor"><rect x="0" y="0" width="3" height="3"/><rect x="9" y="0" width="3" height="3"/><rect x="4.5" y="4.5" width="3" height="3"/><rect x="0" y="9" width="3" height="3"/><rect x="9" y="9" width="3" height="3"/></svg>
+        </button>
+        <ul class="navmenu__sub" id="navsub">
+          <li><a href="#services" data-close>Branding</a></li>
+          <li><a href="#services" data-close>Websites</a></li>
+          <li><a href="#services" data-close>E-commerce</a></li>
+          <li><a href="#services" data-close>Marketing</a></li>
+        </ul>
+      </li>
+      <li class="navmenu__item"><a href="#culture" class="navmenu__link" data-close>About us</a></li>
+      <li class="navmenu__item"><a href="#" class="navmenu__link">Careers
+        <svg class="ext" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10L10 2M4 2h6v6"/></svg></a></li>
+      <li class="navmenu__item"><a href="#contact" class="navmenu__link" data-close>Contact</a></li>
+    </ul>
+    <div class="navmenu__actions">
+      <button class="btn btn--outline btn--block" data-rail-open="pitchdeck">Our pitchdeck</button>
+      <div class="navmenu__duo">
+        <a href="#contact" class="btn btn--cream" data-close>Schedule a call</a>
+        <a href="#contact" class="btn btn--cream" data-close>Start a project</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- ============ RIGHT RAIL (desktop) ============ -->
+<aside class="rail" id="rail">
+  <a href="#contact" class="rail__contact">
+    <span class="rail__contact-avatar"><img src="assets/img/lars.jpg" alt="Lars"></span>
+    <span class="rail__contact-text">Get in touch</span>
+  </a>
+
+  <div class="rail__item open" data-rail="thisisus">
+    <button class="rail__head"><span>This is us</span><span class="rail__pm">( <i class="plus">+</i><i class="minus">&minus;</i> )</span></button>
+    <div class="rail__body">
+      <div class="rail__media">
+        <video src="assets/video/showreel-preview.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+  </div>
+
+  <div class="rail__item" data-rail="pitchdeck">
+    <button class="rail__head"><span>Pitchdeck</span><span class="rail__pm">( <i class="plus">+</i><i class="minus">&minus;</i> )</span></button>
+    <div class="rail__body">
+      <div class="rail__media rail__media--stack">
+        <img src="assets/img/splitted-1200x675.png" alt="Pitchdeck — Small team. Big energy. No fluff.">
+      </div>
+    </div>
+  </div>
+
+  <div class="rail__item" data-rail="awwwards">
+    <button class="rail__head"><span>Our awwwards talk</span><span class="rail__pm">( <i class="plus">+</i><i class="minus">&minus;</i> )</span></button>
+    <div class="rail__body">
+      <div class="rail__media">
+        <video src="assets/video/awwwards.mp4" muted loop playsinline preload="metadata"></video>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero"
+    data-labels="YOU MADE IT|LET&rsquo;S DO DAMAGE|LOOKING SHARP TODAY|NICE ENTRANCE" data-logo="mark">
+    <div class="hero__media">
+      <video class="hero__video" src="assets/video/hero.mp4" autoplay muted loop playsinline></video>
+      <div class="hero__dots" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero__inner">
+      <div class="hero__tag mono">[ We are Lama Lama ]</div>
+      <h1 class="hero__title">
+        <span class="line"><span>A creative digital</span></span>
+        <span class="line"><span>agency that goes</span></span>
+        <span class="line"><span>all in or not at all.</span></span>
+      </h1>
+      <p class="hero__para" data-words>We craft brands, products and experiences that hit harder, work smarter and connect deeper. With heart, with craft, and with a team that&rsquo;s all in or not at all.</p>
+    </div>
+
+    <div class="metabar metabar--hero">
+      <span class="mono">20+ Digital freaks</span>
+      <span class="mono">Amsterdam based</span>
+      <span class="mono clock">[ <i class="clock__dot"></i><span class="js-clock">15:29:55</span> ]</span>
+      <span class="mono metabar__follow">Follow us</span>
+      <a class="mono" href="https://instagram.com/lamalamaNL" target="_blank" rel="noopener">Instagram +</a>
+      <a class="mono" href="https://www.linkedin.com/company/lama-lama/" target="_blank" rel="noopener">Linkedin +</a>
+      <span class="mono langswitch"><em>NL</em><button class="langswitch__toggle" aria-label="Language"><i></i></button><em class="on">EN</em></span>
+    </div>
+  </section>
+
+  <!-- ============ WORK ============ -->
+  <section class="work" id="work"
+    data-labels="PROOF WE WEREN&rsquo;T ON HOLIDAY|OUR GREATEST HITS|CASES WITH TEETH|BIG PROJECT ENERGY">
+    <div class="work__intro">
+      <p class="work__intro-text" data-words>We partner with brands that dare to lead and help them grow through digital. Here&rsquo;s a taste of the work we&rsquo;ve loved making and others have loved using.</p>
+      <span class="mono work__intro-tag">[ Featured work ]</span>
+    </div>
+
+    <div class="work__list" id="workList">
+
+      <article class="case" data-case>
+        <button class="case__row" data-case-toggle>
+          <span class="case__name">Jack &amp; AI</span>
+          <span class="case__tags mono"><i>Branding</i><i>Experience</i><i>Portfolio</i></span>
+          <span class="case__pm mono">( <i class="plus">+</i><i class="minus">&minus;</i> )</span>
+          <span class="case__strip">
+            <img src="assets/img/Jackandai06-1200x800.jpg" alt="Jack & AI">
+            <img src="assets/img/Jackandai01-960x1200.jpg" alt="Jack & AI">
+            <img src="assets/img/Jackandai03-960x1200.jpg" alt="Jack & AI">
+            <img src="assets/img/Jackandai02-960x1200.jpg" alt="Jack & AI">
+            <img src="assets/img/Jackandai05-1200x800.jpg" alt="Jack & AI">
+            <img src="assets/img/Jackandai07-1200x800.jpg" alt="Jack & AI">
+          </span>
+        </button>
+        <div class="case__panel">
+          <div class="case__panel-inner">
+            <p class="case__desc" data-words>Jack &amp; AI creates AI Content Engines by connecting the best emerging AI solutions into one intelligent workflow. Instead of using disconnected prompts, tools, and systems, brands operate through one streamlined infrastructure tailored to their content ambitions.</p>
+            <div class="case__links"><a class="btn btn--outline" href="#">View case</a><a class="btn btn--outline" href="#">Visit website</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" data-case>
+        <button class="case__row" data-case-toggle>
+          <span class="case__name">Moov</span>
+          <span class="case__tags mono"><i>Branding</i><i>Corporate</i></span>
+          <span class="case__pm mono">( <i class="plus">+</i><i class="minus">&minus;</i> )</span>
+          <span class="case__strip">
+            <img src="assets/img/lamalama-moov-branding-04-1200x800.jpg" alt="Moov">
+            <img src="assets/img/lamalama-moov-branding-16-960x1200.jpg" alt="Moov">
+            <img src="assets/img/lamalama-moov-branding-03-1200x800.jpg" alt="Moov">
+            <img src="assets/img/lamalama-moov-branding-15-960x1200.jpg" alt="Moov">
+            <img src="assets/img/lamalama-moov-branding-02-1200x800.jpg" alt="Moov">
+            <img src="assets/img/lamalama-moov-branding-01-1200x800.jpg" alt="Moov">
+          </span>
+        </button>
+        <div class="case__panel">
+          <div class="case__panel-inner">
+            <p class="case__desc" data-words>Moov is a movement brand redefining fitness through sustainable routines. Together, we created a new positioning and visual identity built around one simple belief: real change starts with one step, then another.</p>
+            <div class="case__links"><a class="btn btn--outline" href="#">View case</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" data-case>
+        <button class="case__row" data-case-toggle>
+          <span class="case__name">Gardeners</span>
+          <span class="case__tags mono"><i>Experience</i><i>Portfolio</i></span>
+          <span class="case__pm mono">( <i class="plus">+</i><i class="minus">&minus;</i> )</span>
+          <span class="case__strip">
+            <img src="assets/img/Gardners02-1-960x1200.jpg" alt="Gardeners">
+            <img src="assets/img/Gardners03-1-1200x800.jpg" alt="Gardeners">
+            <img src="assets/img/Gardners01-1-1200x800.jpg" alt="Gardeners">
+          </span>
+        </button>
+        <div class="case__panel">
+          <div class="case__panel-inner">
+            <p class="case__desc" data-words>We are united by a shared conviction that things can be done differently and better. And you can feel that in everything we do. We are sharp at work and lighthearted in our approach. Because, yes, it has to remain fun, above all. With us, you get a creative and committed team without egos, with attention to you, your brand, and the work.</p>
+            <div class="case__links"><a class="btn btn--outline" href="#">View case</a><a class="btn btn--outline" href="#">Visit site</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" data-case>
+        <button class="case__row" data-case-toggle>
+          <span class="case__name">Neurons Lab</span>
+          <span class="case__tags mono"><i>Corporate</i><i>Portfolio</i></span>
+          <span class="case__pm mono">( <i class="plus">+</i><i class="minus">&minus;</i> )</span>
+          <span class="case__strip">
+            <img src="assets/img/NeuronsLab-001-1-960x1200.jpg" alt="Neurons Lab">
+            <img src="assets/img/NeuronsLab-002-1-1200x800.jpg" alt="Neurons Lab">
+            <img src="assets/img/NeuronsLab-003-1-1200x800.jpg" alt="Neurons Lab">
+          </span>
+        </button>
+        <div class="case__panel">
+          <div class="case__panel-inner">
+            <p class="case__desc" data-words>Neurons Lab delivers AI transformation services to guide organizations into the new era of AI. Having supported 100+ clients, including Fortune 500 companies, our approach covers the complete AI spectrum, combining leadership alignment with technology integration to deliver measurable outcomes.</p>
+            <div class="case__links"><a class="btn btn--outline" href="#">View case</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" data-case>
+        <button class="case__row" data-case-toggle>
+          <span class="case__name">Prazeres United</span>
+          <span class="case__tags mono"><i>Branding</i><i>Campaign</i><i>Experience</i></span>
+          <span class="case__pm mono">( <i class="plus">+</i><i class="minus">&minus;</i> )</span>
+          <span class="case__strip">
+            <img src="assets/img/PZR-006-1200x800.jpg" alt="Prazeres United">
+            <img src="assets/img/PZR-001-960x1200.jpg" alt="Prazeres United">
+            <img src="assets/img/PZR-002-1200x800.jpg" alt="Prazeres United">
+            <img src="assets/img/PZR-003-1200x800.jpg" alt="Prazeres United">
+            <img src="assets/img/PZR-004-1200x800.jpg" alt="Prazeres United">
+            <img src="assets/img/PZR-005-960x1200.jpg" alt="Prazeres United">
+          </span>
+        </button>
+        <div class="case__panel">
+          <div class="case__panel-inner">
+            <p class="case__desc" data-words>In the vibrant streets of Brazil&rsquo;s favelas, hope rises with the dawn. Here, football transcends the ordinary&mdash;it&rsquo;s a path to a brighter future. Welcome to Prazeres United, where each pass and every goal opens doors to new possibilities. With every match, their confidence grows. With every practice, their dreams become achievable.</p>
+            <div class="case__links"><a class="btn btn--outline" href="#">View case</a><a class="btn btn--outline" href="#">Open project</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" data-case>
+        <button class="case__row" data-case-toggle>
+          <span class="case__name">Home</span>
+          <span class="case__tags mono"><i>Branding</i><i>Corporate</i><i>Portfolio</i></span>
+          <span class="case__pm mono">( <i class="plus">+</i><i class="minus">&minus;</i> )</span>
+          <span class="case__strip">
+            <img src="assets/img/Home09-960x1200.jpg" alt="Home">
+            <img src="assets/img/Home07-960x1200.jpg" alt="Home">
+            <img src="assets/img/Home08-1200x800.jpg" alt="Home">
+            <img src="assets/img/Home02-1200x800.jpg" alt="Home">
+            <img src="assets/img/Home04-1200x800.jpg" alt="Home">
+            <img src="assets/img/Home06-960x1200.jpg" alt="Home">
+          </span>
+        </button>
+        <div class="case__panel">
+          <div class="case__panel-inner">
+            <p class="case__desc" data-words>We are Home. A social-first creative agency based in Amsterdam.</p>
+            <div class="case__links"><a class="btn btn--outline" href="#">View case</a><a class="btn btn--outline" href="#">Visit site</a></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="case" data-case>
+        <button class="case__row" data-case-toggle>
+          <span class="case__name">Ajax</span>
+          <span class="case__tags mono"><i>Campaign</i><i>Experience</i></span>
+          <span class="case__pm mono">( <i class="plus">+</i><i class="minus">&minus;</i> )</span>
+          <span class="case__strip">
+            <img src="assets/img/concept-002-960x1200.png" alt="Ajax concept">
+            <img src="assets/img/concept-004-960x1200.png" alt="Ajax concept">
+            <img src="assets/img/concept-003-1200x675.png" alt="Ajax concept">
+            <img src="assets/img/concept-001-1200x675.png" alt="Ajax concept">
+            <img src="assets/img/concept-005-1200x675.png" alt="Ajax concept">
+            <img src="assets/img/concept-006-960x1200.png" alt="Ajax concept">
+          </span>
+        </button>
+        <div class="case__panel">
+          <div class="case__panel-inner">
+            <p class="case__desc" data-words>Our vision for bringing AFC Ajax&rsquo;s new brand story to life digitally. Not an official project, but a concept. A prototype exploring what happens when brand, culture and digital truly connect. Fans don&rsquo;t just see history. They experience it. Engage with it. Move through it. This is how modern fan experience should feel. All content is exploratory and owned by its respective creators.</p>
+            <div class="case__links"><a class="btn btn--outline" href="#">View case</a><a class="btn btn--outline" href="#">Visit website</a></div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="work__more">
+      <a href="#" class="btn btn--cream btn--plus mono">Work <span>( + )</span></a>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services"
+    data-labels="HOW WE PAY RENT|OUR PARTY TRICKS|WHERE THE MAGIC HAPPENS">
+    <div class="services__dots" aria-hidden="true"></div>
+    <h2 class="services__title">What we do.</h2>
+
+    <div class="services__pills mono">
+      <a class="pill" href="#">Branding <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+      <a class="pill" href="#">Digital <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+      <a class="pill" href="#">Marketing <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+    </div>
+
+    <p class="services__para" data-words>We create meaningful brands, design digital experiences that move people and build products that perform. Sharp design, smart code and marketing that drives impact. From first insight to final launch, we bring the brains, the heart and the craft to make it happen.</p>
+
+    <div class="services__bottom">
+      <div class="services__tldr">
+        <p class="services__tldr-text">TLDR; we do a lot. Just give us a call:</p>
+        <a class="phonepill" href="tel:+31206220440"><img src="assets/img/lars.jpg" alt=""><span class="mono">+31 20 6220440</span></a>
+      </div>
+      <div class="services__cols">
+        <div class="services__col">
+          <span class="mono">[ Branding ]</span>
+          <ul><li>Brand strategy</li><li>Brand identity</li><li>Logo design</li><li>Campaign</li><li>Motion design</li><li>Photo direction</li><li>Video direction</li><li>3D</li></ul>
+        </div>
+        <div class="services__col">
+          <span class="mono">[ Digital ]</span>
+          <ul><li>Digital strategy</li><li>Content</li><li>UI/UX Design</li><li>Art direction</li><li>Digital design</li><li>Visual Design</li><li>Motion</li><li>Front-end development</li><li>Back-end development</li><li>E-commerce</li></ul>
+        </div>
+        <div class="services__col">
+          <span class="mono">[ Marketing ]</span>
+          <ul><li>Growth Strategy</li><li>B2B Lead Generation</li><li>Paid Media</li><li>Inbound Marketing</li><li>Content Activation</li><li>Email Nurturing</li><li>Lead Scoring</li><li>SEO &amp; Organic Growth</li><li>AI Optimization</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOGOS ============ -->
+  <section class="logos" id="logos"
+    data-labels="CLIENTS WE DIDN&rsquo;T SCARE OFF|THEY TRUSTED US ANYWAY|STILL ON SPEAKING TERMS|TEAMS WHO TOOK THE LEAP">
+    <span class="mono logos__tag">[ Happy clients ]</span>
+    <div class="logos__marquee">
+      <div class="logos__track">
+        <img src="assets/img/achmea.png" alt="achmea">
+        <img src="assets/img/Cupra.png" alt="Cupra">
+        <img src="assets/img/BUMA.png" alt="Buma Stemra">
+        <img src="assets/img/Sony.png" alt="Sony">
+        <img src="assets/img/Van-Doorne.png" alt="Van Doorne">
+        <img src="assets/img/DSM.png" alt="dsm-firmenich">
+        <img src="assets/img/Amsterdam.png" alt="Gemeente Amsterdam">
+        <img src="assets/img/achmea.png" alt="" aria-hidden="true">
+        <img src="assets/img/Cupra.png" alt="" aria-hidden="true">
+        <img src="assets/img/BUMA.png" alt="" aria-hidden="true">
+        <img src="assets/img/Sony.png" alt="" aria-hidden="true">
+        <img src="assets/img/Van-Doorne.png" alt="" aria-hidden="true">
+        <img src="assets/img/DSM.png" alt="" aria-hidden="true">
+        <img src="assets/img/Amsterdam.png" alt="" aria-hidden="true">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CULTURE ============ -->
+  <section class="culture" id="culture"
+    data-labels="BLAME THESE PEOPLE|THE CHAOS UNIT|THE REAL SECRET SAUCE|THE GOOD HUMANS">
+    <div class="culture__grid">
+      <div class="culture__col culture__col--left">
+        <div class="culture__imgs">
+          <figure class="culture__img culture__img--a"><img src="assets/img/nick-799x1200.jpg" alt="Nick makes it perform"></figure>
+          <figure class="culture__img culture__img--b"><img src="assets/img/living-799x1200.jpg" alt="Office life"></figure>
+        </div>
+        <span class="mono culture__caption">Based in the beating heart of Amsterdam</span>
+      </div>
+      <figure class="culture__img culture__img--big"><img src="assets/img/our-vibe-1-1131x1200.jpg" alt="Our vibe"></figure>
+    </div>
+
+    <div class="culture__grid culture__grid--second">
+      <div class="culture__col">
+        <p class="culture__para" data-words>We&rsquo;re a crew that works hard, thinks sharp and keeps the vibe solid. No politics, no games. Just people who care, push and create. We talk straight, lift each other up and aim higher every time. When the culture is tight, the work takes off.</p>
+        <a href="#" class="pill mono culture__pill">Our culture <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+      </div>
+      <figure class="culture__img culture__img--big"><img src="assets/img/image.jpg" alt="The crew at work"></figure>
+    </div>
+  </section>
+
+  <!-- ============ CTA / FOOTER ============ -->
+  <section class="cta" id="contact"
+    data-labels="FUTURE COLLAB STARTS HERE|MAKE THE FIRST MOVE, WE WON&rsquo;T TELL|PRESS THIS, CHANGE YOUR YEAR|SLIDE INTO OUR INBOX|BRING SNACKS" data-logo="checker">
+    <div class="cta__left">
+      <h2 class="cta__title">Brief us<br>something.</h2>
+      <a class="phonepill" href="tel:+31206220440"><img src="assets/img/lars.jpg" alt=""><span class="mono">+31 20 6220440</span></a>
+    </div>
+    <div class="cta__right">
+      <span class="mono">[ Get in touch ]</span>
+      <p data-words>Feel free to reach out and discuss your project. We&rsquo;ll make it sharper.</p>
+      <div class="cta__actions">
+        <a href="#" class="pill mono">Start a project <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+        <a href="#" class="pill mono">Schedule a call <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+      </div>
+    </div>
+
+    <div class="metabar metabar--footer">
+      <span class="mono">20+ Digital freaks</span>
+      <span class="mono">Amsterdam based</span>
+      <span class="mono clock">[ <i class="clock__dot"></i><span class="js-clock">15:29:55</span> ]</span>
+      <span class="mono metabar__follow">Follow us</span>
+      <a class="mono" href="https://instagram.com/lamalamaNL" target="_blank" rel="noopener">Instagram +</a>
+      <a class="mono" href="https://www.linkedin.com/company/lama-lama/" target="_blank" rel="noopener">Linkedin +</a>
+      <span class="mono langswitch"><em>NL</em><button class="langswitch__toggle" aria-label="Language"><i></i></button><em class="on">EN</em></span>
+    </div>
+  </section>
+
+</main>
+
+<div class="menublur" id="menublur"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
